@@ -6,7 +6,7 @@ import {
 } from "@/types/global";
 import { ParsedDatesRange } from "@/utils/getDatesRange";
 
-export type SchedulerProps = {
+export interface SchedulerProps extends SchedulerButtonProps  {
   data: SchedulerData;
   isLoading?: boolean;
   config?: Config;
@@ -18,6 +18,10 @@ export type SchedulerProps = {
   onItemClick?: (data: SchedulerItemClickData) => void;
 };
 
+export type SchedulerButtonProps = {
+  renderDefaultButtons?: { navigationButtons: boolean; zoomButtons: boolean };
+  buttonsToRender?: React.ReactNode[];
+}
 export type StyledOutsideWrapperProps = {
   showScroll: boolean;
 };

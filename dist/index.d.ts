@@ -31,7 +31,15 @@ declare type ParsedDatesRange = {
     endDate: Date;
 };
 
-export declare const Scheduler: ({ data, config, startDate, onRangeChange, onTileClick, onFilterData, onClearFilterData, onItemClick, isLoading }: SchedulerProps) => JSX.Element;
+export declare const Scheduler: ({ data, config, startDate, onRangeChange, onTileClick, onFilterData, onClearFilterData, onItemClick, isLoading, renderDefaultButtons, buttonsToRender }: SchedulerProps) => JSX.Element;
+
+declare type SchedulerButtonProps = {
+    renderDefaultButtons?: {
+        navigationButtons: boolean;
+        zoomButtons: boolean;
+    };
+    buttonsToRender?: React.ReactNode[];
+};
 
 export declare type SchedulerData = SchedulerRow[];
 
@@ -90,7 +98,7 @@ export declare type SchedulerProjectData = {
     };
 };
 
-export declare type SchedulerProps = {
+export declare interface SchedulerProps extends SchedulerButtonProps {
     data: SchedulerData;
     isLoading?: boolean;
     config?: Config;
@@ -100,7 +108,7 @@ export declare type SchedulerProps = {
     onFilterData?: () => void;
     onClearFilterData?: () => void;
     onItemClick?: (data: SchedulerItemClickData) => void;
-};
+}
 
 declare type SchedulerRow = {
     id: string;
