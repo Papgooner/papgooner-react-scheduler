@@ -19,7 +19,10 @@ const Scheduler = ({
   onFilterData,
   onClearFilterData,
   onItemClick,
-  isLoading
+  isLoading,
+  renderDefaultButtons,
+  buttonsToReplaceDefaults,
+  additionalToolbarItems
 }: SchedulerProps) => {
   const appConfig: Config = useMemo(
     () => ({
@@ -73,6 +76,9 @@ const Scheduler = ({
                   onTileClick={onTileClick}
                   topBarWidth={topBarWidth ?? 0}
                   onItemClick={onItemClick}
+                  renderDefaultButtons={renderDefaultButtons}
+                  buttonsToReplaceDefaults={buttonsToReplaceDefaults}
+                  additionalToolbarItems={additionalToolbarItems}
                 />
               </StyledInnerWrapper>
             </StyledOutsideWrapper>

@@ -20,7 +20,15 @@ const initialTooltipData: TooltipData = {
   }
 };
 
-export const Calendar: FC<CalendarProps> = ({ data, onTileClick, onItemClick, topBarWidth }) => {
+export const Calendar: FC<CalendarProps> = ({
+  data,
+  onTileClick,
+  onItemClick,
+  topBarWidth,
+  renderDefaultButtons,
+  buttonsToReplaceDefaults,
+  additionalToolbarItems
+}) => {
   const [tooltipData, setTooltipData] = useState<TooltipData>(initialTooltipData);
   const [filteredData, setFilteredData] = useState(data);
   const [isVisible, setIsVisible] = useState(false);
@@ -134,7 +142,7 @@ export const Calendar: FC<CalendarProps> = ({ data, onTileClick, onItemClick, to
         onItemClick={onItemClick}
       />
       <StyledInnerWrapper>
-        <Header zoom={zoom} topBarWidth={topBarWidth} />
+        <Header zoom={zoom} topBarWidth={topBarWidth} renderDefaultButtons={renderDefaultButtons} additionalToolbarItems={additionalToolbarItems} buttonsToReplaceDefaults={buttonsToReplaceDefaults} />
         {data.length ? (
           <Grid
             data={page}

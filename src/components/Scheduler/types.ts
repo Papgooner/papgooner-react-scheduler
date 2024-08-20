@@ -5,8 +5,9 @@ import {
   SchedulerProjectData
 } from "@/types/global";
 import { ParsedDatesRange } from "@/utils/getDatesRange";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 
-export type SchedulerProps = {
+export interface SchedulerProps extends SchedulerButtonProps {
   data: SchedulerData;
   isLoading?: boolean;
   config?: Config;
@@ -16,8 +17,22 @@ export type SchedulerProps = {
   onFilterData?: () => void;
   onClearFilterData?: () => void;
   onItemClick?: (data: SchedulerItemClickData) => void;
-};
+}
 
+interface ButtonsToReplaceDefaults {
+  navBtnWrapper: React.FC<{ children: ReactNode }>;
+  navBtn: React.FC<{ children: ReactNode } & ButtonHTMLAttributes<HTMLButtonElement>>;
+  todayBtn: React.FC<{ children: ReactNode } & ButtonHTMLAttributes<HTMLButtonElement>>;
+  zoomBtnWrapper: React.FC<{ children: ReactNode }>;
+  zoomInBtn: React.FC<ButtonHTMLAttributes<HTMLButtonElement>>;
+  zoomOutBtn: React.FC<ButtonHTMLAttributes<HTMLButtonElement>>;
+}
+
+export type SchedulerButtonProps = {
+  renderDefaultButtons?: { navigationButtons: boolean; zoomButtons: boolean };
+  buttonsToReplaceDefaults?: ButtonsToReplaceDefaults
+  additionalToolbarItems?: React.ReactNode[];
+};
 export type StyledOutsideWrapperProps = {
   showScroll: boolean;
 };
