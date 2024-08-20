@@ -49,20 +49,20 @@ export const Today = styled.button`
   cursor: pointer;
   line-height: 1.5rem;
 
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    width: 1px;
-    height: 1.5rem;
-    background-color: ${({ theme }) => theme.colors.blue900};
-  }
-  &::before {
-    left: -1.125rem;
-  }
-  &::after {
-    right: -1.125rem;
-  }
+  // &::before,
+  // &::after {
+  //   content: "";
+  //   position: absolute;
+  //   width: 1px;
+  //   height: 1.5rem;
+  //   background-color: ${({ theme }) => theme.colors.blue900};
+  // }
+  // &::before {
+  //   left: -1.125rem;
+  // }
+  // &::after {
+  //   right: -1.125rem;
+  // }
 `;
 
 export const Zoom = styled.div`

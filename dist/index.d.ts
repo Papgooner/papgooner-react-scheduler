@@ -1,4 +1,24 @@
+import { ButtonHTMLAttributes } from 'react';
+import { ReactNode } from 'react';
+
 declare const allZoomLevel: readonly [0, 1];
+
+declare interface ButtonsToReplaceDefaults {
+    navBtnWrapper: React.FC<{
+        children: ReactNode;
+    }>;
+    navBtn: React.FC<{
+        children: ReactNode;
+    } & ButtonHTMLAttributes<HTMLButtonElement>>;
+    todayBtn: React.FC<{
+        children: ReactNode;
+    } & ButtonHTMLAttributes<HTMLButtonElement>>;
+    zoomBtnWrapper: React.FC<{
+        children: ReactNode;
+    }>;
+    zoomInBtn: React.FC<ButtonHTMLAttributes<HTMLButtonElement>>;
+    zoomOutBtn: React.FC<ButtonHTMLAttributes<HTMLButtonElement>>;
+}
 
 export declare type Config = {
     zoom: ZoomLevel;
@@ -31,14 +51,15 @@ declare type ParsedDatesRange = {
     endDate: Date;
 };
 
-export declare const Scheduler: ({ data, config, startDate, onRangeChange, onTileClick, onFilterData, onClearFilterData, onItemClick, isLoading, renderDefaultButtons, buttonsToRender }: SchedulerProps) => JSX.Element;
+export declare const Scheduler: ({ data, config, startDate, onRangeChange, onTileClick, onFilterData, onClearFilterData, onItemClick, isLoading, renderDefaultButtons, buttonsToReplaceDefaults, additionalToolbarItems }: SchedulerProps) => JSX.Element;
 
 declare type SchedulerButtonProps = {
     renderDefaultButtons?: {
         navigationButtons: boolean;
         zoomButtons: boolean;
     };
-    buttonsToRender?: React.ReactNode[];
+    buttonsToReplaceDefaults?: ButtonsToReplaceDefaults;
+    additionalToolbarItems?: React.ReactNode[];
 };
 
 export declare type SchedulerData = SchedulerRow[];

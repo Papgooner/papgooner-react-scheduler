@@ -7,7 +7,12 @@ import { NavigationWrapper, Wrapper, NavBtn, Today, Zoom, Filters } from "./styl
 import { TopbarProps } from "./types";
 import { render } from "react-dom";
 
-const Topbar: FC<TopbarProps> = ({ width, renderDefaultButtons, buttonsToRender }) => {
+const Topbar: FC<TopbarProps> = ({
+  width,
+  renderDefaultButtons,
+  additionalToolbarItems,
+  buttonsToReplaceDefaults
+}) => {
   const { topbar } = useLanguage();
   const {
     data,
@@ -29,7 +34,17 @@ const Topbar: FC<TopbarProps> = ({ width, renderDefaultButtons, buttonsToRender 
     event.stopPropagation();
     onClearFilterData?.();
   };
-  // if boolean is true, render buttons, otherwise handle functions else where
+
+  // return fragment if undefined
+  const {
+    navBtnWrapper: NavBtnWrapper = () => <></>,
+    navBtn: CustomNavBtn = () => <></>,
+    todayBtn: TodayBtn = () => <></>,
+    zoomBtnWrapper: ZoomBtnWrapper = () => <></>,
+    zoomOutBtn: ZoomOutBtn = () => <></>,
+    zoomInBtn: ZoomInBtn = () => <></>
+  } = buttonsToReplaceDefaults || {};
+
   return (
     <Wrapper width={width}>
       <Filters>
@@ -49,9 +64,8 @@ const Topbar: FC<TopbarProps> = ({ width, renderDefaultButtons, buttonsToRender 
           </IconButton>
         )}
       </Filters>
-      {renderDefaultButtons?.navigationButtons && (
+      {renderDefaultButtons?.navigationButtons ? (
         <NavigationWrapper>
-          <p>{renderDefaultButtons.navigationButtons}</p>
           <NavBtn disabled={!data?.length} onClick={handleGoPrev}>
             <Icon iconName="arrowLeft" height="15" fill="#3B3C5F" />
             {topbar.prev}
@@ -62,10 +76,27 @@ const Topbar: FC<TopbarProps> = ({ width, renderDefaultButtons, buttonsToRender 
             <Icon iconName="arrowRight" height="15" fill={colors.blue900} />
           </NavBtn>
         </NavigationWrapper>
+      ) : (
+        buttonsToReplaceDefaults?.navBtnWrapper && (
+          <NavBtnWrapper>
+            {CustomNavBtn && (
+              <>
+                <CustomNavBtn disabled={!data?.length} onClick={handleGoPrev}>
+                  <Icon iconName="arrowLeft" height="15" fill="#3B3C5F" />
+                  {topbar.prev}
+                </CustomNavBtn>
+                <Today onClick={handleGoToday}>{topbar.today}</Today>
+                <CustomNavBtn disabled={!data?.length} onClick={handleGoNext}>
+                  {topbar.next}
+                  <Icon iconName="arrowRight" height="15" fill={colors.blue900} />
+                </CustomNavBtn>
+              </>
+            )}
+          </NavBtnWrapper>
+        )
       )}
-      {renderDefaultButtons?.zoomButtons && (
+      {renderDefaultButtons?.zoomButtons ? (
         <Zoom>
-          <p>{renderDefaultButtons.zoomButtons}</p>
           {topbar.view}
           <IconButton
             isDisabled={!isPrevZoom}
@@ -82,8 +113,16 @@ const Topbar: FC<TopbarProps> = ({ width, renderDefaultButtons, buttonsToRender 
             width="14"
           />
         </Zoom>
+      ) : (
+        buttonsToReplaceDefaults?.zoomBtnWrapper && (
+          <ZoomBtnWrapper>
+            {topbar.view}
+            {ZoomOutBtn && <ZoomOutBtn disabled={!isPrevZoom} onClick={zoomOut} />}
+            {ZoomInBtn && <ZoomInBtn disabled={!isNextZoom} onClick={zoomIn} />}
+          </ZoomBtnWrapper>
+        )
       )}
-      {buttonsToRender?.map((item: React.ReactNode) => {
+      {additionalToolbarItems?.map((item: React.ReactNode) => {
         return item;
       })}
     </Wrapper>

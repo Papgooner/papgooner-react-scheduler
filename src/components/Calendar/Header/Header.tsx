@@ -8,7 +8,7 @@ import { HeaderProps } from "./types";
 import { StyledCanvas, StyledOuterWrapper, StyledWrapper } from "./styles";
 import Topbar from "./Topbar";
 
-const Header: FC<HeaderProps> = ({ zoom, topBarWidth, renderDefaultButtons, buttonsToRender }) => {
+const Header: FC<HeaderProps> = ({ zoom, topBarWidth, renderDefaultButtons, buttonsToReplaceDefaults,  additionalToolbarItems }) => {
   const { week } = useLanguage();
   const { date, cols, dayOfYear, startDate } = useCalendar();
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -46,7 +46,7 @@ const Header: FC<HeaderProps> = ({ zoom, topBarWidth, renderDefaultButtons, butt
 
   return (
     <StyledOuterWrapper>
-      <Topbar width={topBarWidth} renderDefaultButtons={renderDefaultButtons} buttonsToRender={buttonsToRender} />
+      <Topbar width={topBarWidth} renderDefaultButtons={renderDefaultButtons} additionalToolbarItems={additionalToolbarItems} buttonsToReplaceDefaults={buttonsToReplaceDefaults} />
       <StyledWrapper id={canvasHeaderWrapperId}>
         <StyledCanvas ref={canvasRef} />
       </StyledWrapper>
