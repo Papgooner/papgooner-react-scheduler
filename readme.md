@@ -4,12 +4,12 @@ npm link `https://www.npmjs.com/package/@papgooner/papgooner-react-scheduler`
 
 # Installation
 
-    `npm i @papgooner/papgooner-react-scheduler`
+    npm i @papgooner/papgooner-react-scheduler
 
 Incase of error about useMemo, put below into package.json:
 
-    `"react": "18.2.0",
-    "react-dom": "18.2.0",`
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
 
 
 Adds a attendee object array property to event objects, and a total attendee count to each event tile.
