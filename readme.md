@@ -18,7 +18,7 @@ Provides keys to children events to prevent errors.
 
 Example data: 
 
-`const schedulerData: SchedulerData = [
+```const schedulerData: SchedulerData = [
     {
       id: "63faaa80-6074-490c-833d-e08ebece4cb4",
       label: {
@@ -49,5 +49,5 @@ Example data:
         },
       ],
     },
-  ];`
+  ];```
 
