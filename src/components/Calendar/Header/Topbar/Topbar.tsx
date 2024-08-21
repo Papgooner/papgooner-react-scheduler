@@ -5,7 +5,6 @@ import { useCalendar } from "@/context/CalendarProvider";
 import { useLanguage } from "@/context/LocaleProvider";
 import { NavigationWrapper, Wrapper, NavBtn, Today, Zoom, Filters } from "./styles";
 import { TopbarProps } from "./types";
-import { render } from "react-dom";
 
 const Topbar: FC<TopbarProps> = ({
   width,
@@ -39,7 +38,7 @@ const Topbar: FC<TopbarProps> = ({
   const {
     navBtnWrapper: NavBtnWrapper = () => <></>,
     navBtn: CustomNavBtn = () => <></>,
-    todayBtn: TodayBtn = () => <></>,
+    todayBtn: TodayButton = () => <></>,
     zoomBtnWrapper: ZoomBtnWrapper = () => <></>,
     zoomOutBtn: ZoomOutBtn = () => <></>,
     zoomInBtn: ZoomInBtn = () => <></>
@@ -85,7 +84,7 @@ const Topbar: FC<TopbarProps> = ({
                   <Icon iconName="arrowLeft" height="15" fill="#3B3C5F" />
                   {topbar.prev}
                 </CustomNavBtn>
-                <Today onClick={handleGoToday}>{topbar.today}</Today>
+                <TodayButton onClick={handleGoToday}>{topbar.today}</TodayButton>
                 <CustomNavBtn disabled={!data?.length} onClick={handleGoNext}>
                   {topbar.next}
                   <Icon iconName="arrowRight" height="15" fill={colors.blue900} />
