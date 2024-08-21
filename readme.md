@@ -1,4 +1,6 @@
-A fork of react-scheduler, original by Bitnoise can be found here: https://scheduler.bitnoise.pl/
+A fork of react-scheduler, original by Bitnoise can be found here: `https://scheduler.bitnoise.pl/`
+
+npm link `https://www.npmjs.com/package/@papgooner/papgooner-react-scheduler`
 
 Adds a attendee object array property to event objects.
 
